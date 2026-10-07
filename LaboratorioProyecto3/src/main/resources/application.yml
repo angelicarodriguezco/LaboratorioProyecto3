@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: LaboratorioProyecto3
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/laboratorioproyecto3
+    username: root
+    password: Angelica@2025
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+      show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+  app:
+    jwt:
+      secret:
+        expiration-ms: 86400000
