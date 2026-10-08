@@ -16,7 +16,7 @@ public class Usuario {
     private Long id;
 
     @Column(nullable = false, unique = true, length = 50)
-    private String nombre;
+    private String username;
 
     @Column(nullable = false)
     private String password;
