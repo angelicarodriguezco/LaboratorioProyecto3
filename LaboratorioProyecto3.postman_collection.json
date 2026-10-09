@@ -339,7 +339,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"id\": 2,\r\n  \"nombre\": \"Electrónicos\",\r\n  \"descripcion\": \"Actualizado\"\r\n}",
+          "raw": "{\n  \"id\": 1,\n  \"nombre\": \"Laptop X45D\",\n  \"descripcion\": \"Actualizado\",\n  \"precio\": 17999.99,\n  \"cantidadStock\": 8,\n  \"categoriaId\": 3,\n  \"categoriaNombre\": null\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -355,7 +355,7 @@
           "port": "8080",
           "path": [
             "api",
-            "categorias",
+            "productos",
             "2"
           ]
         }
@@ -445,7 +445,7 @@
           "port": "8080",
           "path": [
             "api",
-            "categorias",
+            "productos",
             "2"
           ]
         }

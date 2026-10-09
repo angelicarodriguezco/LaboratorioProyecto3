@@ -6,7 +6,7 @@ services:
     container_name: laboratorio_mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABSE: laboratorioproyecto3
+      MYSQL_DATABASE: laboratorioproyecto3
     ports:
       - "3307:3306"
     volumes:
