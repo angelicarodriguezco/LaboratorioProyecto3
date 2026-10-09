@@ -25,7 +25,7 @@ public class ProductoController {
         return productoService.findAll();
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     @PreAuthorize("isAuthenticated()")
     public ProductoDTO findById(@PathVariable Long id) {
         return productoService.findById(id);
@@ -43,7 +43,7 @@ public class ProductoController {
         return productoService.update(dto, id);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('SUPER-ADMIN-ROLE')")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         productoService.delete(id);

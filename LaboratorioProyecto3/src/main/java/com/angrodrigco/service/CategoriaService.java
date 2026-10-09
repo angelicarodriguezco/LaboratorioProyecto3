@@ -4,7 +4,6 @@ import com.angrodrigco.dto.CategoriaDTO;
 import com.angrodrigco.mappers.CategoriaMapper;
 import com.angrodrigco.model.Categoria;
 import com.angrodrigco.repository.CategoriaRepository;
-import org.hibernate.ObjectNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
