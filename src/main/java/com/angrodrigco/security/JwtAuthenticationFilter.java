@@ -7,7 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework/security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -43,7 +43,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         try {
         String token = authHeader.substring(7);
         String username = jwtService.extractUsername(token);
-        Authentication currentAuth = securityContextRepository.getContext(request, response).getAuthentication();
+        Authentication currentAuth = SecurityContextHolder.getContext().getAuthentication();
 
        if (username != null && (currentAuth == null || currentAuth instanceof AnonymousAuthenticationToken)) {
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
