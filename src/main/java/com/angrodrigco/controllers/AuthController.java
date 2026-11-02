@@ -2,11 +2,15 @@ package com.angrodrigco.controllers;
 
 import com.angrodrigco.dto.LoginRequestDTO;
 import com.angrodrigco.dto.LoginResponseDTO;
+import com.angrodrigco.dto.RegistroRequestDTO;
+import com.angrodrigco.dto.UsuarioResponseDTO;
 import com.angrodrigco.service.AuthService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -21,5 +25,10 @@ public class AuthController {
     @PostMapping("/login")
     public LoginResponseDTO login(@RequestBody LoginRequestDTO request) {
         return authService.login(request);
+    }
+
+    @PostMapping("/registrar")
+    public ResponseEntity<UsuarioResponseDTO> registrar(@RequestBody RegistroRequestDTO request) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(authService.registrar(request));
     }
 }
