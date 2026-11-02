@@ -7,6 +7,8 @@ import com.angrodrigco.model.Producto;
 import com.angrodrigco.repository.CategoriaRepository;
 import com.angrodrigco.repository.ProductoRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+import org.springframework.http.HttpStatus;
 
 import java.util.List;
 
@@ -29,13 +31,13 @@ public class ProductoService {
 
     public ProductoDTO findById(Long id) {
         Producto producto = productoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Producto no encontrado"));
         return productoMapper.toDTO(producto);
     }
 
     public ProductoDTO create(ProductoDTO dto) {
         Categoria categoria = categoriaRepository.findById(dto.categoriaId())
-                .orElseThrow(() -> new RuntimeException("Categoria no encontrada"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Categoria no encontrada"));
         Producto producto = productoMapper.toEntity(dto);
         producto.setId(null);
         producto.setCategoria(categoria);
@@ -44,10 +46,10 @@ public class ProductoService {
 
     public ProductoDTO update(ProductoDTO dto, Long id) {
         Producto producto = productoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Producto no encontrado"));
 
         Categoria categoria = categoriaRepository.findById(dto.categoriaId())
-                .orElseThrow(() -> new RuntimeException("Categoria no encontrada"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Categoria no encontrada"));
         producto.setNombre(dto.nombre());
         producto.setDescripcion(dto.descripcion());
         producto.setPrecio(dto.precio());
@@ -58,7 +60,7 @@ public class ProductoService {
 
     public void delete(Long id) {
         if (!productoRepository.existsById(id)) {
-            throw new RuntimeException("Producto no encontrado");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Producto no encontrado");
         }
         productoRepository.deleteById(id);
     }

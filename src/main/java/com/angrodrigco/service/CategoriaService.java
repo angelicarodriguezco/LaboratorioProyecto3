@@ -5,6 +5,8 @@ import com.angrodrigco.mappers.CategoriaMapper;
 import com.angrodrigco.model.Categoria;
 import com.angrodrigco.repository.CategoriaRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+import org.springframework.http.HttpStatus;
 
 import java.util.List;
 
@@ -25,7 +27,7 @@ public class CategoriaService {
 
     public CategoriaDTO findById(Long id) {
         Categoria categoria = categoriaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Categoria no encontrada"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Categoria no encontrada"));
         return categoriaMapper.toDTO(categoria);
     }
 
@@ -37,7 +39,7 @@ public class CategoriaService {
 
     public CategoriaDTO update(CategoriaDTO dto, Long id) {
         Categoria categoria = categoriaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Categoria no encontrada"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Categoria no encontrada"));
         categoria.setNombre(dto.nombre());
         categoria.setDescripcion(dto.descripcion());
         return categoriaMapper.toDTO(categoriaRepository.save(categoria));
@@ -45,7 +47,7 @@ public class CategoriaService {
 
     public void delete(Long id) {
         if (!categoriaRepository.existsById(id)) {
-            throw new RuntimeException("Categoria no encontrada");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Categoria no encontrada");
         }
         categoriaRepository.deleteById(id);
     }

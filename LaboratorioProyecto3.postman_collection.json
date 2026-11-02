@@ -7,6 +7,93 @@
   },
   "item": [
     {
+      "name": "Login User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const res = pm.response.json();",
+              "pm.collectionVariables.set(\"token\", res.accessToken);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"user\",\n  \"password\": \"password321\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/auth/login",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "auth", "login"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login Admin",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const res = pm.response.json();\r\npm.collectionVariables.set(\"token\", res.accessToken);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+       "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"password123\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
       "name": "Listar Categorias",
       "request": {
         "auth": {
@@ -14,7 +101,7 @@
           "bearer": [
             {
               "key": "token",
-              "value": "",
+              "value": "{{token}}",
               "type": "string"
             }
           ]
@@ -58,7 +145,7 @@
           "bearer": [
             {
               "key": "token",
-              "value": "",
+              "value": "{{token}}",
               "type": "string"
             }
           ]
@@ -102,7 +189,7 @@
           "bearer": [
             {
               "key": "token",
-              "value": "",
+              "value": "{{token}}",
               "type": "string"
             }
           ]
@@ -146,7 +233,7 @@
           "bearer": [
             {
               "key": "token",
-              "value": "",
+              "value": "{{token}}",
               "type": "string"
             }
           ]
@@ -190,7 +277,7 @@
           "bearer": [
             {
               "key": "token",
-              "value": "",
+              "value": "{{token}}",
               "type": "string"
             }
           ]
@@ -204,7 +291,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"id\": null,\r\n  \"nombre\": \"Electrónicos\",\r\n  \"descripcion\": \"Dispositivos y gadgets\"\r\n}",
+          "raw": "",
           "options": {
             "raw": {
               "language": "json"
@@ -235,7 +322,7 @@
           "bearer": [
             {
               "key": "token",
-              "value": "",
+              "value": "{{token}}",
               "type": "string"
             }
           ]
@@ -280,7 +367,7 @@
           "bearer": [
             {
               "key": "token",
-              "value": "",
+              "value": "{{token}}",
               "type": "string"
             }
           ]
@@ -325,7 +412,7 @@
           "bearer": [
             {
               "key": "token",
-              "value": "",
+              "value": "{{token}}",
               "type": "string"
             }
           ]
@@ -339,7 +426,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"id\": 1,\n  \"nombre\": \"Laptop X45D\",\n  \"descripcion\": \"Actualizado\",\n  \"precio\": 17999.99,\n  \"cantidadStock\": 8,\n  \"categoriaId\": 3,\n  \"categoriaNombre\": null\n}",
+          "raw": "{\r\n  \"id\": 1,\r\n  \"nombre\": \"Laptop X45D\",\r\n  \"descripcion\": \"Actualizado\",\r\n  \"precio\": 17999.99,\r\n  \"cantidadStock\": 8,\r\n  \"categoriaId\": 3,\r\n  \"categoriaNombre\": null\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -370,7 +457,7 @@
           "bearer": [
             {
               "key": "token",
-              "value": "",
+              "value": "{{token}}",
               "type": "string"
             }
           ]
@@ -415,7 +502,7 @@
           "bearer": [
             {
               "key": "token",
-              "value": "",
+              "value": "{{token}}",
               "type": "string"
             }
           ]
@@ -437,7 +524,7 @@
           }
         },
         "url": {
-          "raw": "http://localhost:8080/api/productos/2",
+          "raw": "http://localhost:8080/api/productos/1",
           "protocol": "http",
           "host": [
             "localhost"
@@ -446,11 +533,21 @@
           "path": [
             "api",
             "productos",
-            "2"
+            "1"
           ]
         }
       },
       "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "json_web_token_0qzm",
+      "secret": true
+    },
+    {
+      "key": "token",
+      "value": ""
     }
   ]
 }
